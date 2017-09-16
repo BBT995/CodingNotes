@@ -1,0 +1,21 @@
+Prefab Toolbar NGUI的预制体工具栏
+UIlabel的面板属性:
+	FontSize字体的大小、样式设置
+		Widget：文字的一些装饰
+			Pivot --设置边框的中心点或中心轴
+		  （以左向右、中向两边、右向左、以上向下，以中间向上下，以下向上扩展--可选）
+	modifier 调节器--用于控制英文的正常状态和大小写的状态
+	Overflow 当文字溢出时的处理
+		当文字大小超出了Widget（文字显示的边界，可以调节控制）中Size的大小时,要如何处理
+		ShrinkContent：收缩内容（Widget当前大小所能容纳的最大文字数）
+		ClampContent：夹持内容（能显示几个字就显示几个字）
+	   ☆ResizeFreely：自由调整(Widget的大小随着文字的大小而改变)
+		ResizeHeight：调整高度（宽度固定，调整高度来容纳文字）
+	Alignment  对齐方式
+	Gradient   渐变颜色
+	Effect     特效
+		Shadow  阴影
+		Outline 描边
+	Spaceing   间距（文字之间的距离）
+	Color Tint 色彩化（设置文字显示的颜色）不能与渐变共存
+	

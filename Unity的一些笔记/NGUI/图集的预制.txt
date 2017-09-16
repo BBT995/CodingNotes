@@ -1,0 +1,53 @@
+Atlas---图集
+	ATLas Maker图集制造器
+	打开Atlas
+		--NGUI->OPen->AtlasMaker
+	添加/制作图集
+		在Assets下建立一个Textures，再建一个子目录UI存放贴图
+		将ATLas Maker打开后，选中UI下的贴图，再点击Add或Update进行添加
+		保存到Assets下的Atlas文件夹下
+		制作完成后，在Atlas下有做好的Atlas图集，.png，.mat，以及.prefab
+		我们需要用到的就是.prefab
+
+使用图集用UISprite
+	添加Sprite组件-->NGUI-->Create-->Sprite
+	sprite的一些属性
+	①Type：Simple：普通模式（默认）
+			加载出来的图片是失真的，点击snap恢复默认
+		   Sliced：九宫格模式
+				通过Edit编辑border中的上下左右位置，方便调整图片的大小而不失真
+		   Tiled： 平铺模式
+				通过控制Widget中的size控制平铺的范围，将图片平铺在Widget中
+		   Flip：进度模式
+				Fill Dir    填充方向（水平，垂直，90度，180度...)
+				FIll Amount 填充向量（拖动进度条控制填充）
+				Invert Fill 翻转填充（与之前的方向相反，反向填充）
+				这三个属性是搭配使用的
+				
+用代码控制UISprite添加图集
+	1、将script脚本挂载到需要设置的物体UIRoot的身上
+	2、创建一个物体对象GameObject uiSprite=new GameObject("创建的对象名");
+		并为该对象设置父物体,即设置为挂载对象的子物体，挂载对象为UIRoot
+		代码：先得得到父物体的位置组件
+		private Transform m_Transform;
+		m_Transform=gameObject.GetComponent<Transform>();
+		uiSprite.GetComponent<Transform>().SetParent(m_Transform);
+	3、将缩放比例设置为（1,1,1）
+		uiSprite.GetComponent<Transform>()localScale=Vactor3.one;
+	4、为创建的对象添加UISprite组件
+		UISprite sprite = uiSprite.GetComponent<UISprite>();
+	5、加载所需要的名为GameAtlas的Atlas图集
+		UIatlas uiAtlas=Resources.Load<UIatlas>("GameAtlas");
+		(需要将Assets文件夹下面存放图集预制体的文件夹名改为Resources)
+	6、将加载得到的图集给UISprite组件
+		sprite.atlas=uiAtlas;
+	6、选择需要显示的图片
+		sprite.spriteName="图片的名字"; --NGUI是根据图片名字(唯一的)来加载图片的
+		
+为UILabel（文字）和UISprite（图片）添加UIButton（鼠标或手指点击）组件
+
+	创建UILabel或UISprite对象后，右键点击对象物体-->Attach-->BoxCollider（碰撞器）
+	其中BoxCollider的碰撞面积和物体对象的一致
+	再右击物体-->Attach-->ButtonScript 就添加成功了
+	
+		
